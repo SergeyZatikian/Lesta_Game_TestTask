@@ -36,7 +36,7 @@ print()
 # Проверка класса Motor_Boat
 print("=== Тестирование класса Motor_Boat ===")
 try:
-    motor_boat.start_motor()
+    motor_boat.row_forward()
     motor_boat.turn_left()
     motor_boat.add_weight(300)
     print("Статус лодки с мотором:", motor_boat.get_all())
@@ -99,3 +99,59 @@ try:
     big_boat.add_weight(3000)  # Превышение максимального веса
 except ValueError as e:
     print("Ошибка:", e)
+    
+    
+
+# Создаем объект лодки
+boat = Boat()
+
+# Сценарий 1: Скорость с одним гребцом-новичком
+print("=== Сценарий 1: Скорость с одним гребцом-новичком ===")
+rower_novice = RowerBeginner("Иван", 25, 70)
+boat.add_rower(rower_novice)
+boat.row_forward()
+print("Скорость лодки:", boat.get_all()["speed"])
+print()
+
+# Сценарий 2: Скорость с одним гребцом-профессионалом
+print("=== Сценарий 2: Скорость с одним гребцом-профессионалом ===")
+boat = Boat()  # Создаем новую лодку
+rower_pro = RowerPro("Алексей", 35, 90)
+boat.add_rower(rower_pro)
+boat.row_forward()
+print("Скорость лодки:", boat.get_all()["speed"])
+print()
+
+# Сценарий 3: Скорость с несколькими гребцами разного уровня
+print("=== Сценарий 3: Скорость с несколькими гребцами разного уровня ===")
+boat = Boat()  # Создаем новую лодку
+rower_novice = RowerBeginner("Иван", 25, 70)
+rower_experienced = RowerExperienced("Петр", 30, 80)
+rower_pro = RowerPro("Алексей", 35, 90)
+boat.add_rower(rower_novice)
+boat.add_rower(rower_experienced)
+boat.add_rower(rower_pro)
+boat.row_forward()
+print("Скорость лодки:", boat.get_all()["speed"])
+print()
+
+# Сценарий 4: Скорость с максимальным количеством гребцов
+print("=== Сценарий 4: Скорость с максимальным количеством гребцов ===")
+boat = Big_Boat()  # Создаем новую лодку
+for i in range(8):  # 4 для базовой лодки, 8 для большой лодки
+    rower = RowerBeginner(f"Гребец {i}", 25, 70)
+    boat.add_rower(rower)
+boat.row_forward()
+print("Скорость лодки:", boat.get_all()["speed"])
+print()
+
+
+# Сценарий 5: Скорость моторной лодкиы
+print("=== Сценарий 4: Скорость с максимальным количеством гребцов ===")
+boat = Motor_Boat()  # Создаем новую лодку
+for i in range(4):  # 4 для базовой лодки, 8 для большой лодки
+    rower = RowerBeginner(f"Гребец {i}", 25, 70)
+    boat.add_rower(rower)
+boat.row_forward()
+print("Скорость лодки:", boat.get_all()["speed"])
+print()

@@ -48,9 +48,7 @@ class Boat:
             raise ValueError("Вес груза должен быть целым числом")
         if weight <= 0:
             raise ValueError("Вес груза должен быть положительнеым")
-        if not self.rowers_weight == self.weight - weight:
-            raise ValueError("Недостаточно груза на лодке")
-        if self.weight - weight  < 0:
+        if  weight > self.weight - self.rowers_weight:
             raise ValueError("Недостаточно груза на лодке")
         self.weight -= weight
         
@@ -93,7 +91,7 @@ class Boat:
         return {
             "speed": self.speed,
             "direction": self.direction,
-            "rowers": self.rowers,
+            "rowers": [str(rower) for rower in self.rowers],
             "weight": self.weight,
             "rowers_weight": self.rowers_weight,
             "anchor": self.anchor
@@ -105,10 +103,15 @@ class Motor_Boat(Boat):
     def __init__(self, motor_power = 100):
         super().__init__()
         self.motor_power = motor_power
-        
-    def start_motor(self):
-        if not self.anchor:
-            self.speed = self.motor_power
+    
+    def row_forward(self):
+        if self.anchor: self.speed = 0
+        else:
+            base_speed = 10
+            speed_reduction = self.weight/100
+            total_efficiency = sum(rower.rower_efficiency for rower in self.rowers)
+            self.speed = max((base_speed*total_efficiency - speed_reduction) + self.motor_power, 0)
+    
             
     def stop_motor(self):
         self.speed = 0
@@ -122,7 +125,7 @@ class Big_Boat(Boat):
     def __init__(self):
         super().__init__()
         self.max_rowers = 8
-        
+        self.max_weight = 2000
             
     def get_all(self):
         status = super().get_all()
