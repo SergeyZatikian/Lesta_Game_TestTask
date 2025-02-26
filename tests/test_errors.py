@@ -1,6 +1,6 @@
 import pytest
-from mechanics.person import *
-from mechanics.boat import *
+from mechanics.person import RowerBeginner
+from mechanics.boat import Boat
 
 def test_max_weight_exceeded():
     boat = Boat()

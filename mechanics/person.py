@@ -1,8 +1,17 @@
 class Person:
+    
+    """Класс Person
+    
+    В нем описываеться основынем методы класса Person. Можно задать вес, имя и возраст гребцу.
+    
+    Так же существуют разные типы гребцов, у которых своя эфективность от новичка до профессионала
+    """
+    
     def __init__(self, name = "NONAME", age = 25, weight = 80):
         self.name = name
         self.age = age
         self.weight = weight
+        
         
     def __str__(self):
         return f"{self.name}, {self.age} лет, вес: {self.weight} кг"

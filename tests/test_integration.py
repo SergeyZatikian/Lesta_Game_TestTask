@@ -1,6 +1,6 @@
 import pytest
-from mechanics.person import *
-from mechanics.boat import *
+from mechanics.person import RowerBeginner, RowerPro
+from mechanics.boat import Boat, Big_Boat, Motor_Boat, Cargo_Boat
 
 def test_rowers_influence_on_speed():
     boat = Boat()

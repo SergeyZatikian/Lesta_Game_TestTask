@@ -1,6 +1,6 @@
 import pytest
-from mechanics.person import *
-from mechanics.boat import *
+from mechanics.person import RowerBeginner, RowerPro
+from mechanics.boat import Boat
 
 def test_add_beginner_rower():
     boat = Boat()
