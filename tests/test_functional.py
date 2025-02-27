@@ -2,20 +2,14 @@ import pytest
 from mechanics.person import RowerBeginner, RowerPro
 from mechanics.boat import Boat
 
-def test_add_beginner_rower():
+@pytest.mark.parametrize("rower", [RowerBeginner, RowerPro])
+def test_add_rower(rower):
     boat = Boat()
-    rower = RowerBeginner()
+    rower = rower()
     boat.add_rower(rower)
     assert len(boat.rowers) == 1
     assert boat.weight == rower.weight
-
-def test_add_pro_rower():
-    boat = Boat()
-    rower = RowerPro()
-    boat.add_rower(rower)
-    assert len(boat.rowers) == 1
-    assert boat.weight == rower.weight
-
+    
 def test_delete_rower():
     boat = Boat()
     rower = RowerBeginner()
